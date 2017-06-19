@@ -1,0 +1,134 @@
+/*
+ * Theme Name: photography4all
+ *
+ * Layout: Content-Sidebar
+ *
+ * Learn more: https://developer.wordpress.org/themes/basics/template-files/
+*/
+
+.site-content {
+    padding-bottom: 4em;  
+}
+.single .site-content,
+.page .site-content { 
+    background: #fff; /* branco */
+    background: hsl(0, 0%, 100%);
+}
+
+.site-main{
+    /* background: yellow; */ /* OBRAS */
+}
+
+.site-content .widget-area {
+    width: 380px;
+    float: right;
+    padding: 4rem;
+    background: #fff;
+    background: hsl(0, 0%, 100%);
+}
+
+.site-footer {
+    clear: both;
+    width: 100%;
+}
+
+.entry-header,
+.entry-content,
+.entry-footer,
+.tag-links,
+.post-navigation,
+.comments-area,
+.paging-navigation,
+.page-header,
+.entry-summary{
+    position: relative;
+    max-width: 780px;
+    max-width: 78rem;
+    padding: 0 4rem;
+    margin: 0 auto;
+}
+
+/* Criar a caixa branca para cada post na pagina index */
+.index-box {
+    max-width: 780px;
+    max-width: 78rem;
+    padding: 1em 0 2em;
+    margin: 0 auto 2em;
+    background: #fafafa;
+    background: hsl(0, 0%, 98%);
+}
+
+.index-box blockquote.alignleft,
+.index-box blockquote.alignright {
+    background: #fff;
+    background: hsl(0, 0%, 100%);
+    border: none;
+}
+
+@media screen and (min-width: 1820px) {
+    .index-box blockquote.alignright { padding-right: 2em; }
+}
+
+@media screen and (min-width: 1320px) {
+    .index-box blockquote.alignleft { padding-left: 2em; }
+}
+
+@media screen and (min-width: 1540px) {
+    .content-area {
+        float: left;
+        width: 100%;
+        margin-right: -380px;
+    }
+}
+
+@media screen and (min-width: 1160px) and (max-width: 1539px) {
+    .content-area {
+        width: 100%;
+        float: left;
+        margin-left: -380px;
+        padding-left: 380px;
+    }
+    
+    /* deslocar o conteudo para a direita  */
+    .entry-header,
+    .entry-content,
+    .entry-summary,
+    .entry-footer,
+    .tag-links,
+    .post-navigation,
+    .comments-area,
+    .paging-navigation,
+    .index-box,
+    .page-header{ 
+        margin-right: 0; 
+    }
+    
+}
+
+@media screen and (max-width: 1159px) {  
+    .site-content .widget-area {
+        width: auto;
+        max-width: 780px;
+        float: none;
+        margin: 1em auto 0;
+    }
+}
+
+
+/*--------------------------------------------------------------
+5.5 Menu pages Previous Page e Next Page
+aplica-se as paginas index e tambem archive
+Criar a caixa cinza para o Previous Page e Next Page
+--------------------------------------------------------------*/
+.paging-navigation,
+.page-header{
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin-bottom: 2em;
+    list-style-type: none;
+    background: #fafafa;
+    background: hsl(0, 0%, 98%);
+} 
+
+
+  

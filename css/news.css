@@ -1,0 +1,70 @@
+/*
+ * Theme Name: photography4all
+ *
+ * Layout: Grid News page
+ *
+ * Learn more: https://developer.wordpress.org/themes/basics/template-files/
+*/
+
+
+/*  background-color: yellow; */
+
+#main-content{
+    margin: 0 auto;
+    width: 80%;
+}
+
+.group:after { 
+    visibility: hidden; 
+    display: block; 
+    font-size: 0; 
+    content: " "; 
+    clear: both; 
+    height: 0; 
+}
+.group { 
+    display: inline-block; 
+    clear: both; 
+}
+
+/* Inicio do comentario de barra invertida */
+/* start commented backslash hack \*/ * html .group { height: 1%; } .group { display: block; } 
+
+/* Fim do comentario de barra invertida */
+/* close commented backslash hack */
+
+.product-jump { 
+    line-height: 1.5; 
+    display: block; 
+    padding: 10px 0; 
+    width: 200px; /* largura da imagem e de 200px */
+    text-align: center; 
+    border: 1px solid #ccc; 
+    float: left; 
+    margin: 0 10px 10px 0; 
+}
+.product-jump:hover { 
+    text-decoration: none; 
+    background: #eee; 
+}
+.product-jump .product-title { 
+    display: block; 
+    font-size: 16px; 
+    color: #333; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
