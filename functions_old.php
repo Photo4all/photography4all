@@ -118,7 +118,7 @@ if ( ! function_exists( 'photography4all_setup' ) ) :
         add_image_size('index-thumb', 780, 250, true);  
         
         /* imagens para o slider da pagina home */
-        add_image_size('slider-thumb', 1000, 572, true);  
+        add_image_size('slider-thumb', 780, 250, true);  
         
         
         // Nao foi utilizado o menu principal menu-1 do WP theme que usa a funcao wp_nav_menu() 
@@ -289,8 +289,9 @@ function photography4all_scripts() {
 	
     // Carregar o Style dos forms do registo e login page. 
     // Carregar o Style do forma da contact page. 
-       wp_enqueue_style('photography4all-control-style',get_template_directory_uri().'/css/forms.css');
-   
+    if (is_page_template('page-templates/page-contact.php' || 'page-register.php' || 'page-login.php' || 'page-forgot_password.php' || 'page-change_password.php' || 'page-change_activate.php')) {
+        wp_enqueue_style('photography4all-control-style',get_template_directory_uri().'/css/forms.css');
+    }
 	
 	// Carregar as fontes do Google Fonts
     wp_enqueue_style('photography4all-google-fonts', 'https://fonts.googleapis.com/css?family=Marvel');    
@@ -1011,9 +1012,6 @@ function geo_single_fracs2dec($fracs) {
 		geo_frac2dec($fracs[1]) / 60 +
 		geo_frac2dec($fracs[2]) / 3600;
 }
-
-/* a funcao has_post_thumbnail() vai ler a featured image se fosse dentro do texto era a funcao is_attachment() */
-/* a categoria selecionada foi Moments */
 function photography4all_exif() {
 	if (is_single() && in_category('Moments') || has_post_thumbnail()) {
 		global $post;
@@ -1030,67 +1028,50 @@ function photography4all_exif() {
 			
 			$latitude = $imgmeta['image_meta']['latitude'];
 			$longitude = $imgmeta['image_meta']['longitude'];
-			
 			$lat_ref = $imgmeta['image_meta']['latitude_ref'];
 			$lng_ref = $imgmeta['image_meta']['longitude_ref'];
-			
 			$lat = geo_single_fracs2dec($latitude);
 			$lng = geo_single_fracs2dec($longitude);
-			
 			if ($lat_ref == 'S') { $neg_lat = '-'; } else { $neg_lat = ''; }
 			if ($lng_ref == 'W') { $neg_lng = '-'; } else { $neg_lng = ''; }
 			
-                echo '<h4><i class="fa fa-camera" aria-hidden="true"></i> Camera information</h4>';
+                                echo '<h4><i class="fa fa-camera" aria-hidden="true"></i> Camera information</h4>';
 				echo "<ul class='exif'>";
-				
-				/* A abertura */
-				if (!empty($imgmeta['image_meta']['aperture'])) 
-				    echo '<li> Aperture: f/' . $imgmeta['image_meta']['aperture']."</li>";
-				
-				/* O ISO */
-				if (!empty($imgmeta['image_meta']['iso'])) 
-				    echo '<li> ISO: ' . $imgmeta['image_meta']['iso']."</li>";
+				if (!empty($imgmeta['image_meta']['aperture'])) echo '<li> Aperture: f/' . $imgmeta['image_meta']['aperture']."</li>";
+				if (!empty($imgmeta['image_meta']['iso'])) echo '<li> ISO: ' . $imgmeta['image_meta']['iso']."</li>";
 
-                /* A velocidade */
 				if (!empty($imgmeta['image_meta']['shutter_speed']))
 				{
-				    echo '<li> Shutter Speed: ';
+				echo '<li> Shutter Speed: ';
 					if ((1 / $imgmeta['image_meta']['shutter_speed']) > 1)
 					{
-    					echo "1/";
-    						if ((number_format((1 / $imgmeta['image_meta']['shutter_speed']), 1)) == 1.3
-        						or number_format((1 / $imgmeta['image_meta']['shutter_speed']), 1) == 1.5
-        						or number_format((1 / $imgmeta['image_meta']['shutter_speed']), 1) == 1.6
-        						or number_format((1 / $imgmeta['image_meta']['shutter_speed']), 1) == 2.5)
-    						{
-    						    echo number_format((1 / $imgmeta['image_meta']['shutter_speed']), 1, '.', '') . " s</li>";
-    						}
-    						else{
-    						    echo number_format((1 / $imgmeta['image_meta']['shutter_speed']), 0, '.', '') . " s</li>";
-    						}
+					echo "1/";
+						if ((number_format((1 / $imgmeta['image_meta']['shutter_speed']), 1)) == 1.3
+						or number_format((1 / $imgmeta['image_meta']['shutter_speed']), 1) == 1.5
+						or number_format((1 / $imgmeta['image_meta']['shutter_speed']), 1) == 1.6
+						or number_format((1 / $imgmeta['image_meta']['shutter_speed']), 1) == 2.5)
+						{
+						echo number_format((1 / $imgmeta['image_meta']['shutter_speed']), 1, '.', '') . " s</li>";
+						}
+						else{
+						echo number_format((1 / $imgmeta['image_meta']['shutter_speed']), 0, '.', '') . " s</li>";
+						}
 					}
 					else{
-					    echo $imgmeta['image_meta']['shutter_speed']." s</li>";
+					echo $imgmeta['image_meta']['shutter_speed']." s</li>";
 					}
 				}
-				
-                /* A distancia focal da lente */
-				if (!empty($imgmeta['image_meta']['focal_length'])) 
-				    echo '<li> Focal Length: ' . $imgmeta['image_meta']['focal_length']."mm</li>";
-				    
-				/* Modelo da camera */
-				if (!empty($imgmeta['image_meta']['camera'])) 
-				    echo '<li>Camera: ' . $imgmeta['image_meta']['camera']."</li>";
-				    
-                echo "</ul>";
-                
-                /* Latitude e Longitude */
-				if ($latitude != 0 && $longitude != 0){
-				    echo '<h4><i class="fa fa-map-marker" aria-hidden="true"></i> GPS information</h4>'; 
-				    echo "<ul class='exif'>";
-                    echo '<li> Location: <a href="http://maps.google.com/maps?q=' . $neg_lat . number_format($lat,6) . '+' . $neg_lng . number_format($lng, 6) . '&z=11" target="_blank">' . geo_pretty_fracs2dec($latitude). $lat_ref . ' ' . geo_pretty_fracs2dec($longitude) . $lng_ref . '</a></li>';
-				    echo "</ul>";
-				}
+
+				if (!empty($imgmeta['image_meta']['focal_length'])) echo '<li> Focal Length: ' . $imgmeta['image_meta']['focal_length']."mm</li>";
+				if (!empty($imgmeta['image_meta']['camera'])) echo '<li> Camera: ' . $imgmeta['image_meta']['camera']."</li>";
+                               
+                              
+				if ($latitude != 0 && $longitude != 0) 
+                                    echo '<li><i class="fa fa-map-marker" aria-hidden="true"></i> Location: <a href="http://maps.google.com/maps?q=' . $neg_lat . number_format($lat,6) . '+' . $neg_lng . number_format($lng, 6) . '&z=11" target="_blank">' . geo_pretty_fracs2dec($latitude). $lat_ref . ' ' . geo_pretty_fracs2dec($longitude) . $lng_ref . '</a></li>';
+                                    //echo '<li>Location: <a href="http://maps.google.com/maps?q=' . $neg_lat . number_format($lat,6) . '+' . $neg_lng . number_format($lng, 6) . '&z=11 &t=h" target="_blank" >' . geo_pretty_fracs2dec($latitude). $lat_ref . ' ' . geo_pretty_fracs2dec($longitude) . $lng_ref . '</a></li>';
+                                    
+                                
+				echo "</ul>";
 			}
 	}
 }
@@ -1120,7 +1101,6 @@ function photography4all_sidebarNews() {
     
             <aside id="post-<?php the_ID(); ?>" <?php post_class( 'sidebar-post' ); ?>>
             <h3 class="sidebar-title"><a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'compass' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a></h3>
-            <?php photography4all_posted_on(); ?>
       
             <?php if ( has_post_thumbnail() ) { ?>
                 <a href="<?php the_permalink(); ?>">
@@ -1130,8 +1110,6 @@ function photography4all_sidebarNews() {
                     ) ); ?>
                 </a>
             <?php } ?>
-            
-             
              
             <section class="sidebar-content">
                 <?php the_excerpt(); ?>  <!-- excerto de texto -->
@@ -1201,7 +1179,7 @@ function photography4all_sidebarMessage() {
   
      $args = array(
         'post_type' => 'Message',
-        'posts_per_page' => 3,
+        'posts_per_page' => 2,
         'orderby' => 'rand', // Post's aleatórios
         'status' => 'approve',
         'number' => '5',

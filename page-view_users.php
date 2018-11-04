@@ -9,9 +9,14 @@
 // This script retrieves all the records from the users table.
 // This version paginates the query results.
 
+
+echo '<div class="registered_users-box">';
+echo '<div class="registered_users">';
+
 $page_title = 'View the Current Users';
 //include ('includes/header.html');
-echo '<h1>Registered Users</h1>';
+echo '<h2 class="entry-title">Registered Users</h2>';
+echo '<hr>';
 
 //require_once ('/inc/mysqli_connect.php');
 require_once dirname( __FILE__ ) . '/inc/mysqli_connect.php';
@@ -27,7 +32,7 @@ if (isset($_GET['p']) && is_numeric($_GET['p'])) { // Already been determined.
 } else { // Need to determine.
 
  	// Count the number of records:
-	$q = "SELECT COUNT(user_id) FROM wpby_users_friendly";
+	$q = "SELECT COUNT(user_id) FROM wp_users_friendly";
 	$r = @mysqli_query ($dbc, $q);
 	$row = @mysqli_fetch_array ($r, MYSQLI_NUM);
 	$records = $row[0];
@@ -49,11 +54,13 @@ if (isset($_GET['s']) && is_numeric($_GET['s'])) {
 }
 		
 // Make the query:
-$q = "SELECT last_name, first_name, DATE_FORMAT(registration_date, '%M %d, %Y') AS dr, user_id FROM wpby_users_friendly ORDER BY registration_date ASC LIMIT $start, $display";		
+$q = "SELECT last_name, first_name, DATE_FORMAT(registration_date, '%M %d, %Y') AS dr, user_id FROM wp_users_friendly ORDER BY registration_date ASC LIMIT $start, $display";		
 $r = @mysqli_query ($dbc, $q);
 
+echo '<div class="caixa-users">';
+
 // Table header:
-echo '<table align="center" cellspacing="0" cellpadding="5" width="75%">
+echo '<table id="lista-users">
 <tr>
 	<td align="left"><b>Edit</b></td>
 	<td align="left"><b>Delete</b></td>
@@ -74,8 +81,8 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 
 
 	echo '<tr bgcolor="' . $bg . '">
-		<td align="left"><a href="https://photography4all.net/index.php/edit_user/?id=' . $row['user_id'] . '">Edit</a></td>
-		<td align="left"><a href="https://photography4all.net/index.php/delete_user/?id=' . $row['user_id'] . '">Delete</a></td>
+		<td align="left"><a href="http://photography4all.xyz/edit_user/?id=' . $row['user_id'] . '">Edit</a></td>
+		<td align="left"><a href="http://photography4all.xyz/index.php/delete_user/?id=' . $row['user_id'] . '">Delete</a></td>
 		<td align="left">' . $row['last_name'] . '</td>
 		<td align="left">' . $row['first_name'] . '</td>
 		<td align="left">' . $row['dr'] . '</td>
@@ -85,6 +92,10 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 } // End of WHILE loop.
 
 echo '</table>';
+
+echo '</div/>';
+
+
 mysqli_free_result ($r);
 mysqli_close($dbc);
 
@@ -99,13 +110,13 @@ if ($pages > 1) {
 	
 	// If it's not the first page, make a Previous button:
 	if ($current_page != 1) {
-		echo '<a href="https://photography4all.net/index.php/view_users/?s=' . ($start - $display) . '&p=' . $pages . '">Previous</a> ';
+		echo '<a href="http://photography4all.xyz/index.php/view_users/?s=' . ($start - $display) . '&p=' . $pages . '">Previous</a> ';
 	}
 	
 	// Make all the numbered pages:
 	for ($i = 1; $i <= $pages; $i++) {
 		if ($i != $current_page) {
-			echo '<a href="https://photography4all.net/index.php/view_users/?s=' . (($display * ($i - 1))) . '&p=' . $pages . '">' . $i . '</a> ';
+			echo '<a href="http://photography4all.xyz/index.php/view_users/?s=' . (($display * ($i - 1))) . '&p=' . $pages . '">' . $i . '</a> ';
 		} else {
 			echo $i . ' ';
 		}
@@ -113,12 +124,15 @@ if ($pages > 1) {
 	
 	// If it's not the last page, make a Next button:
 	if ($current_page != $pages) {
-		echo '<a href="https://photography4all.net/index.php/view_users/?s=' . ($start + $display) . '&p=' . $pages . '">Next</a>';
+		echo '<a href="http://photography4all.xyz/index.php/view_users/?s=' . ($start + $display) . '&p=' . $pages . '">Next</a>';
 	}
 	
 	echo '</p>'; // Close the paragraph.
 	
 } // End of links section.
+	
+	echo '</div>';
+	echo '</div>';
 	
 //include ('includes/footer.html');
 ?>

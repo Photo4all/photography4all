@@ -6,14 +6,13 @@
  * and open the template in the editor.
  */
 
-/* verifica se foi definida a area widget */
 if ( ! is_active_sidebar( 'sidebar-4' ) ) {
 	return;
 }
 ?>
 
+<!--OBRAS !-->
 <aside id="secondary" class="widget-area">
-	<?php photography4all_sidebarNews(); ?>
+	<?php photography4all_sidebarTravel(); ?>
 </aside><!-- #secondary -->
 
-       

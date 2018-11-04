@@ -7,41 +7,47 @@
  * and that other 'pages' on your WordPress site may use a
  * different template.
  *
- * @link https://codex.wordpress.org/Template_Hierarchy
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * @package photography4all
  */
 
 get_header(); ?>
 
-<div id="content-slider">
-<div id="captioned-gallery">
-	<figure class="slider">
-		<figure>
-			<img src="https://photography4all.net/wp-content/themes/photography4all/imagens/slider/photo_slider_1.jpg" alt>
-			<figcaption>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</figcaption>
-		</figure>
-		<figure>
-			<img src="https://photography4all.net/wp-content/themes/photography4all/imagens/slider/photo_slider_1.jpg" alt>
-			<figcaption>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</figcaption>
-		</figure>
-		<figure>
-			<img src="https://photography4all.net/wp-content/themes/photography4all/imagens/slider/photo_slider_1.jpg" alt>
-			<figcaption>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</figcaption>
-		</figure>
-		<figure>
-			<img src="https://photography4all.net/wp-content/themes/photography4all/imagens/slider/photo_slider_1.jpg" alt>
-			<figcaption>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</figcaption>
-		</figure>
-		<figure>
-			<img src="https://photography4all.net/wp-content/themes/photography4all/imagens/slider/photo_slider_1.jpg" alt>
-			<figcaption>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</figcaption>
-		</figure>
-	</figure>
-</div>
-</div>
 
 
+<section id="responsive-slider"> 
+<div id="slider">
+    <?php 
+    $query = new WP_Query( array( 'post_type' => 'lightbox', 'posts_per_page' => -1) );
+        if( $query->have_posts() ){
+            echo '<figure>'; 
+            while($query->have_posts()){                
+                $query->the_post();
+                $image_query = new WP_Query( array( 'post_type' => 'attachment', 'post_status' => 'inherit', 'post_mime_type' => 'image', 'posts_per_page' => -1, 'post_parent' => get_the_ID() ) );
+                while( $image_query->have_posts() ) {
+                    $image_query->the_post();
+                    // só faz o gets da imagem que foi uploaded para o wordpress, 
+                    // a funcao não faz output de uma imagem no conteúdo do post
+                    echo wp_get_attachment_image( get_the_ID(),'slider-thumb'); 
+                    
+                 // INCIO OBRAS    
+                 //   echo '<figcaption>';
+                 //   echo wp_get_attachment_caption( get_the_ID()); 
+                 //   echo '</figcaption>';
+                 // FIM DE OBRAS 
+                
+                    }
+            }
+            echo '</figure>';
+        }       
+    ?> 
+    </div>           
+</section>
 
-<?php
-get_footer();
+
+<!--chamar o ficheiro fotografias.php com função de 3 Post aleatorios -->
+<?php get_template_part('fotografias'); ?>
+
+
+<?php get_footer();

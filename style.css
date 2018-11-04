@@ -1,0 +1,3281 @@
+/*!
+Theme Name: Photography4all
+Theme URI: http://photography4all.xyz/
+Author: Jose Monteiro
+Author URI: http://photography4all.xyz/
+Description: Este website foi desenvolvido no âmbito da unidade curricular de Projecto/Estágio, do ano lectivo de 2017/2018, da Licenciatura de Engenharia de Informática, do Instituto Superior de Engenharia do Porto. Disponível para download em https://github.com/Photo4all/photography4all.
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: LICENSE
+Text Domain: photography4all
+Tags: portfolio, photography, news, post-formats, footer-widgets, featured-images, custom-header, grid-layout, two-columns, right-sidebar, featured-image-header
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+
+*/
+
+
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+1.0 Reset
+2.0 Tipografia global
+
+# Elements
+4.0 Forms
+5.0 Menu principal
+        Globais 
+    min-width: 800px
+        Search
+    max-width: 799px
+        Clearfix
+    max-width: 600px
+    max-width: 480px
+    min-width: 321px
+    max-width: 320px Smartphone  
+    
+    
+	5.1 Links
+	5.2 Navigation Next e Previous para comentarios, pages e posts
+	    Aplica-se aos Comentarios, Pages e aos Post's.
+	    Adiciona duas linhas uma no top e outra no bottom no next e previous Pages e aos Post's.
+	    Adiciona duas linhas uma no top e outra no bottom a navegação dos comentarios.
+	
+	## Menus
+	    Navegação das index pages
+	
+	5.3 Social media icon
+	x.x Menu dropdown do header logout e change pass
+	5.5 Navegação secundária - Breadcrumbs
+	
+# Accessibility
+
+7.0 Alinhamentos de imagens e texto
+    Alinhamento responsive
+    min-width: 1320px
+    min-width: 1820px
+    Tags das imagens criadas por defeito WP
+
+# Clearings
+
+9.0 Header 
+    Header search
+    max-width: 600px
+     
+    
+10.0 Widgets Sidebar, News e Footer
+     Fontawesome icons
+     RSS
+     Garantir que select elements cabem nos widgets
+     Esconde o botao do Search widget
+     10.1 Footer Widgets - Flexible Box Model
+     10.2 News Widgets
+
+
+11.0 Conteudo
+	11.1 Posts a as pages
+	     Tipografia titulo e conteudo Posts a as pages
+	     Tipografia global definir font-size conteudo posts e pages
+         Tipografia max-width: 680px definir font-size conteudo posts e pages ecras menores
+         
+         11.1.1 Taxonomies
+         11.1.2 Custom Post Type aleatorios front-page
+                Flexible box Model
+         
+	11.2 Meta dados  
+	     Lista de categorias
+         Post elemento composto por Taken by...data...comment.
+         Lista das Tags
+	
+	     Post elemento composto por Taken by...data...comment deslocar esquerda min-width: 1320px
+	     
+	     
+	     11.2.1 Meta single post 
+                Pseudo-Elements Post elemento composto por ...data...
+	     11.2.2 Blockquotes (citacoes)
+	            Adicionar linhas top e bottom     
+	            Bloco de citação e citar
+	            Alinhar esquerda utilizado a class standard .alignleft
+	            Alinhar direita utilizado a class standard .alignright
+	            
+	11.3 Asides post formats
+	
+	
+	co
+	
+	
+	11.4 Comentarios
+	     titulo
+	     retirar a numeracao dos comentarios     
+	     deslocar para a direta 50px para alinhar
+	     metadata
+	     dimensão do texto
+	     adicionar linha e margem para separar cada comentario
+	     botao Replay
+	     os meus comentarios isto é os realizados pelo autor...
+	     Comentarios responsive max-width:600px
+	     Comentarios form
+	     Texto dos levels para cima do campo
+	     Aviso que o comentario esta pendente de validação ...
+	     
+	11.5 Index and Archive
+	     Continue Reading com o Font Awesome
+	11.6 Stick post 
+    11.7 Archive descricao
+    11.8 Paginas Portfolio e Travels Grid Layout Flexbox
+         Utiliza-se Flexbox
+	
+	11.9 Home -> Slideshow com CSS3 sem javaScript
+	     Utiliza-se @keyframes
+	     
+	11.10 Pagina listagem utlizadores
+	
+# Infinite scroll
+
+13.0 Media
+    13.1 Featured Image
+         fallback isto é o plano alternativo
+         min-width: 1820px
+	     min-width: 1540px max-width: 1820px 
+	     min-width: 1440px max-width: 1819px
+	     alinhamento das feature images das paginas index das tags do content.php
+	13.2 Caption das imagens
+	13.x Galleries captions
+	13.3 Gallery (OBRAS !)
+         13.3.1 Gallery lightbox do menu Portfolio
+	
+14.0 Contact form
+	 Testimonials
+	 Responsive Testimonials
+	
+15.0 Footer
+	
+	
+	
+--------------------------------------------------------------*/
+
+
+
+
+/*--------------------------------------------------------------
+# 1.0 Reset
+--------------------------------------------------------------*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	border: 0;
+	font-family: inherit;
+	font-size: 100%;
+	font-style: inherit;
+	font-weight: inherit;
+	margin: 0;
+	outline: 0;
+	padding: 0;
+	vertical-align: baseline;
+}
+
+html,body {
+ overflow: auto;
+}
+
+html {
+        font-family: sans-serif;
+	font-size: 62.5%; /* Corrects text resizing oddly in IE6/7 when body font-size is set using em units http://clagnut.com/blog/348/#c790 */
+	overflow-y: scroll;   /* Keeps page centered in all browsers regardless of content height */
+	-webkit-text-size-adjust: 100%;  /* Prevents iOS text size adjust after orientation change, without disabling user zoom */
+	-ms-text-size-adjust:     100%;  /* www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/ */
+}
+
+body {
+	margin: 0;
+        background-color: #f7f7f7;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+main,
+menu,
+nav,
+section,
+summary {
+	display: block;
+}
+
+audio,
+canvas,
+progress,
+video {
+	display: inline-block;
+	vertical-align: baseline;
+}
+
+audio:not([controls]) {
+	display: none;
+	height: 0;
+}
+
+[hidden],
+template {
+	display: none;
+}
+
+a {
+	background-color: transparent;
+}
+
+a:active,
+a:hover {
+	outline: 0;
+}
+
+abbr[title] {
+	border-bottom: 1px dotted;
+}
+
+b,
+strong {
+	font-weight: bold;
+}
+
+dfn {
+	font-style: italic;
+}
+
+h1 {
+	font-size: 2em;
+	margin: 0.67em 0;
+}
+
+mark {
+	background: #ff0;
+	color: #000;
+}
+
+small {
+	font-size: 80%;
+}
+
+sub,
+sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+
+sup {
+	top: -0.5em;
+}
+
+sub {
+	bottom: -0.25em;
+}
+
+img {
+	border: 0;
+}
+
+svg:not(:root) {
+	overflow: hidden;
+}
+
+figure {
+	margin: 1em 40px;
+}
+
+hr {
+	box-sizing: content-box;
+	height: 0;
+}
+
+pre {
+	overflow: auto;
+}
+
+code,
+kbd,
+pre,
+samp {
+	font-family: monospace, monospace;
+	font-size: 1em;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+	color: inherit;
+	font: inherit;
+	margin: 0;
+}
+
+button {
+	overflow: visible;
+}
+
+button,
+select {
+	text-transform: none;
+}
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	-webkit-appearance: button;
+	cursor: pointer;
+}
+
+button[disabled],
+html input[disabled] {
+	cursor: default;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+
+input {
+	line-height: normal;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+	box-sizing: border-box;
+	padding: 0;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	height: auto;
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+	-webkit-appearance: none;
+}
+
+fieldset {
+	border: 1px solid #c0c0c0;
+	margin: 0 2px;
+	padding: 0.35em 0.625em 0.75em;
+}
+
+legend {
+	border: 0;
+	padding: 0;
+}
+
+textarea {
+	overflow: auto;
+}
+
+optgroup {
+	font-weight: bold;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+td,
+th {
+	padding: 0;
+}
+
+/*--------------------------------------------------------------
+2.0 Tipografia global
+--------------------------------------------------------------*/
+body,
+button,
+input,
+select,
+optgroup,
+textarea {
+	color: #404040;
+	font-family: 'Marvel', sans-serif;
+	font-size: 18px; /* como nem todos os navegadores suportam o rem define-se como fallback os px */   
+	font-size: 1.8rem; /* o rem  o tamanho relativo ao body, o body no reset tem 100% o que significa 1.6rem  16px */
+	line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	clear: right;
+    font-weight: 700;
+    font-family: 'Marvel', sans-serif;
+    color: #000; /* preto */
+    color: hsl(0, 0%, 0%);
+    -ms-word-break: break-word;
+    -epub-word-break: break-word;
+    word-break: break-all;
+}
+
+/* OBRAS ! */
+/*p {
+	margin-bottom: 1.5em;
+}*/
+
+dfn, cite, em, i {
+	font-style: italic;
+}
+/*
+blockquote {
+	margin: 0 1.5em;
+}*/
+
+address {
+	margin: 0 0 1.5em;
+}
+
+pre {
+	background: #eee;
+	font-family: "Courier 10 Pitch", Courier, monospace;
+	font-size: 15px;
+	font-size: 1.5rem;
+	line-height: 1.6;
+	margin-bottom: 1.6em;
+	max-width: 100%;
+	overflow: auto;
+	padding: 1.6em;
+}
+
+code, kbd, tt, var {
+	font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+	font-size: 15px;
+	font-size: 0.9375rem;
+}
+
+abbr, acronym {
+	border-bottom: 1px dotted #666;
+	cursor: help;
+}
+
+mark, ins {
+	background: #fff9c0;
+	text-decoration: none;
+}
+
+big {
+	font-size: 125%;
+}
+
+/*--------------------------------------------------------------
+# Elements
+--------------------------------------------------------------*/
+html {
+	box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+	/* Inherit box-sizing to make it easier to change the property for components that leverage other behavior; see https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
+	box-sizing: inherit;
+}
+
+body {
+	background: #fff;
+	/* Fallback for when there is no custom background color defined. */
+}
+
+hr {
+	background-color: #ccc;
+	border: 0;
+	height: 1px;
+	margin-bottom: 1.5em;
+}
+
+ul, ol {
+	margin: 0 0 1.5em 3em;
+}
+
+ul {
+	list-style: disc;
+}
+
+ol {
+	list-style: decimal;
+}
+
+li > ul,
+li > ol {
+	margin-bottom: 0;
+	margin-left: 1.5em;
+}
+
+dt {
+	font-weight: bold;
+}
+
+dd {
+	margin: 0 1.5em 1.5em;
+}
+
+img {
+	height: auto;
+	/* Make sure images are scaled correctly. */
+	max-width: 100%;
+	/* Adhere to container width. */
+}
+
+figure {
+	margin: 1em 0;
+	/* Extra wide images within figure tags don't overflow the content area. */
+}
+
+table {
+	margin: 0 0 1.5em;
+	width: 100%;
+}
+
+/*--------------------------------------------------------------
+4.0 Forms
+--------------------------------------------------------------*/
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+    padding: 1em 2em;
+    font-size: 16px;
+    font-size: 1.6rem;
+    font-family: 'Marvel', sans-serif;
+    line-height: 1;
+    color: hsl(0, 0%, 100%);
+    background: #3c3c3c;
+    background: hsl(0, 0%, 24%);
+    border: none;
+    border-radius: 3px;
+    cursor: pointer; /* Improves usability and consistency of cursor style between image-type 'input' and others */
+    -webkit-appearance: button; /* Corrects inability to style clickable 'input' types in iOS */
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover,
+input[type="submit"]:hover {
+    opacity: 0.8;
+}
+
+button:active, button:focus,
+input[type="button"]:active,
+input[type="button"]:focus,
+input[type="reset"]:active,
+input[type="reset"]:focus,
+input[type="submit"]:active,
+input[type="submit"]:focus {
+	background: #000;
+    background: hsl(0, 0%, 0%);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="range"],
+input[type="date"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="color"],
+textarea {
+	color: #666;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	padding: 3px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="number"]:focus,
+input[type="tel"]:focus,
+input[type="range"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="week"]:focus,
+input[type="time"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="color"]:focus,
+textarea:focus {
+	color: #111;
+}
+
+select {
+	border: 1px solid #ccc;
+}
+
+textarea {
+	width: 100%;
+}
+
+/*--------------------------------------------------------------
+5.0 Menu principal      
+--------------------------------------------------------------*/
+/*----- Globais -----*/
+/* Text meant only for screen readers */
+.assistive-text {
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+	clip: rect(1px, 1px, 1px, 1px);
+	position: absolute !important;
+}
+.separator{
+    font-size:13px;
+}
+.search-submit{ 
+    margin: 0 auto;
+    background: transparent;
+    padding: 9px 5px;
+    border: none;
+    cursor: pointer;    
+}
+.search-container button:hover {
+    background: transparent;
+     
+}
+.search-container input[type="search"]{
+    border: none;
+    background: #f7f7f7;
+}
+
+
+/* aplica-se quando o viewport maior ou igual a 800px */
+@media screen and (min-width: 800px) {     
+    .navmenu{
+        width:100%;   
+        display:inline-block;
+    }    
+    #mainNav{     
+        display:block!important;
+        background: #FFFFFF; /* cor do menu #455868; */
+        font-size: 18px;
+        font-size: 1.8rem;
+        font-family: 'Marvel', sans-serif;  
+        border-bottom: 2px solid #FFFFFF; 
+    }  
+    #mainNav .active{ 
+        font-weight: bold;
+    }
+    #mainNav .active a { 
+        color: black; 
+    }
+    #mainNav ul{
+        list-style-type:none;
+        padding-left:0;
+/*      font-size:0;*/
+        margin: 0 0 0 2em;   
+        background: #FFFFFF; /* cor do menu #455868; */
+    }    
+    #mainNav li{
+        display:inline-block;
+       
+        color:white;
+        font-size: 18px;
+        font-size: 1.8rem;
+        font-family: 'Marvel', sans-serif; 
+    }      
+    #mainNav li a {
+        border-right: 1px solid white;  /* #576979; */
+        box-sizing: border-box;
+        -moz-box-sizing: border-box; /*Firefox 1-3*/
+        -webkit-box-sizing: border-box; /* Safari */
+    }    
+    ul.clearfix>li>a{
+        color:black;
+    }
+    ul.clearfix>li>a:hover{
+        color: #fff;
+        color: hsl(0, 0%, 100%);
+        background: #e5e5e5;
+        /* background: hsl(0, 0%, 30%); */
+    }    
+    #mainNav a{
+        display:block;
+        padding:10px;
+        text-decoration:none;
+        color: #000000;
+        color: hsl(0, 0%, 0%);       
+        text-align: center;
+        width: 100px; /* OBRAS ! */
+    }  
+    /*----- Search -----*/
+    #search-form{    
+        display:inline-block;
+        padding-top:6px;    
+        margin: 0 2em 0 0;  /* top right bottom left */
+        float:right;        
+    }
+    #mainNav a#pull {
+        display: none;
+    }
+}
+/* aplica-se quando o viewport menor ou igual a 799px */
+@media screen and (max-width: 799px) {
+    #search-form{
+       display: none; 
+    }  
+    #mainNav {
+        height: 40px;
+        width: 100%;
+        background: #FFFFFF; /* cor do menu #455868; */
+        font-size: 18px;
+        font-size: 1.8rem;
+        font-family: 'Marvel', sans-serif;  
+    /*  font-weight: bold; */
+        position: relative;
+        border-bottom: 2px solid #FFFFFF;
+    }      
+    #mainNav ul {
+        padding: 0;
+        margin: 0 auto;  /* Com este comando vai centrar o elemento. */
+                         /* Centrar a pagina com 0 para cima e baixo e auto para esquerda e direita. */        
+            width: 600px;
+            height: 40px;        
+    }
+    #mainNav li {
+        display: inline; /* em linha */
+        float: left; /* Faz o deslocar para a esquerda */ 
+    }
+/*--------------------------------------------------------------
+       Globais Clearfix Menu principal responsive <nav id="mainNav"></nav>    
+       Tecnica do Clearfix; o problema acontece quando um elemento flutuante esta dentro de outro elemento, 
+       que nao foraa a sua altura automaticamente para ajustar ao elemento flutuante. Quando um elemento usa 
+       a propriedade afloata, seu pai nao consegue calcular a altura pois com o float o elemento sai do escopo. 
+--------------------------------------------------------------*/
+    .clearfix:before,
+    .clearfix:after {
+        content: " "; /* A Propriedade content cria um conteado estatico utilizando os pseudo-elementos ::after e ::before. */
+        display: table;
+    }
+    .clearfix:after {
+        clear: both;
+    }
+    .clearfix {
+        *zoom: 1;
+    }
+    /* definido para 6 links do menu porque o container tem width: 600px
+       o que da cada 1 link do menu com width: 100px porque 6 x 100px = 600px*/
+    #mainNav a {
+            color: 	#000000;
+            color: hsl(0, 0%, 0%);
+            display: inline-block;
+            width: 100px;
+            text-align: center;
+            text-decoration: none;
+            line-height: 40px;
+            text-shadow: 1px 1px 0px #283744;
+    }
+    /* cada link menu separado por 1px excepto o ultimo 
+       o que da cada link 101xp entao aplicaao box-sizing: border-box; para obrigar a manter o 100px
+       isto a nao deixa passar o 100px o border-right: 1px solid black; fica dentro do 100px
+       consultar CSS3 Box-sizing (Hongkiat.com) */
+    #mainNav li a {
+            border-right: 1px solid white;  /* #576979; */
+            box-sizing: border-box;
+            -moz-box-sizing: border-box; /*Firefox 1-3*/
+            -webkit-box-sizing: border-box; /* Safari */
+    }
+    #mainNav li:last-child a {
+        border-right: 1px; /* nao retirar a linha lateral direita do About */
+    }
+
+    nav a:hover, nav a:active {
+        background-color: #8c99a4;
+    }
+
+    #mainNav li:hover > a {
+        color: #fff;
+        color: hsl(0, 0%, 100%);
+        background: #e5e5e5;
+    /*    background: hsl(0, 0%, 30%);*/
+    }
+    #mainNav a#pull {
+        display: none;
+    }
+    #mainNav .active { 
+        background-color: #8c99a4; 
+    }
+    #mainNav .active a{ 
+        color: black; 
+    }
+}
+
+/*--------------------------------------------------------------
+Globais Menu principal <nav></nav> max-width: 600px
+--------------------------------------------------------------*/
+@media screen and (max-width: 600px) {
+  #mainNav { 
+        height: auto;          
+    }
+    #mainNav ul {
+        width: 100%;
+        display: block;
+        height: auto;
+    }
+    #mainNav li {
+        width: 50%;
+        float: left;
+        position: relative;
+    }
+    #mainNav li a {
+        border-bottom: 1px solid #576979;
+        border-right: 1px solid #576979;
+  }
+    #mainNav a {
+        text-align: left;
+        width: 100%;
+        text-indent: 25px;
+    }
+}
+
+/*--------------------------------------------------------------
+Globais Menu principal <nav></nav> max-width: 480px
+--------------------------------------------------------------*/
+@media only screen and (max-width: 480px) {
+	#mainNav {
+		border-bottom: 0;
+	}
+	#mainNav ul {
+		display: none;
+		height: auto;
+	}
+	#mainNav a#pull {
+		display: block;
+		background-color: #283744;
+		color: white;
+		width: 100%;
+		position: relative;
+	}
+	#mainNav a#pull:after {
+		content:"";		
+                background: url(img/nav-icon.png) no-repeat;
+		width: 30px;
+		height: 30px;
+		display: inline-block;
+		position: absolute;
+		right: 15px;
+		top: 10px;
+	}
+}
+
+
+/*--------------------------------------------------------------
+Esconder o item com o search min-width: 321px 
+--------------------------------------------------------------*/
+@media screen and (min-width: 321px) { 
+    .search-item{
+        display: none !important;
+    }
+    .fa{
+        color: gray;
+    }
+}
+
+
+/*--------------------------------------------------------------
+Globais Menu principal <nav></nav> max-width: 320px Smartphone 
+--------------------------------------------------------------*/
+@media only screen and (max-width: 320px) {    
+        #mainNav a {
+                color: white;        
+        }    
+        .navmenu{
+                box-shadow: 0 0 5px #171717;
+        }
+        .clearfix a {
+                text-decoration: none;
+                color: #fff;
+                background: linear-gradient(#628297, #4f6b81);
+                border: 1px solid #1e222b;
+                border-bottom: 0;
+                box-shadow: inset 0px 1px 1px #8b9db3;
+        }
+        .clearfix a:hover {
+                background: linear-gradient(#3b3f48, #3c434d);
+                box-shadow: inset 0px 1px 1px #475059;
+        }
+        .clearfix a:active {
+                background: linear-gradient(#2b442d, #2d4630);
+        }
+	#mainNav li {
+                display: block;
+                float: none;
+                width: 100%;
+	}
+	#mainNav li a {
+                border-bottom: 1px solid #576979;
+	}        
+        /*----- Search -----*/
+        .search-item{
+                padding-left: 2px;
+                border-bottom: 1px solid #576979;
+        }    
+        .clearfix .search-item {
+            text-decoration: none;
+            color: #fff;
+            background: linear-gradient(#628297, #4f6b81);
+            border: 1px solid #1e222b;
+            border-bottom: 0;
+            box-shadow: inset 0px 1px 1px #8b9db3;
+        }
+        .clearfix .search-item:hover {
+            background: linear-gradient(#3b3f48, #3c434d);
+            box-shadow: inset 0px 1px 1px #475059;
+        }
+        .fa{
+            color: white;
+        }
+        .search-container input[type="search"] {        
+            background: #f7f7f7;
+            width: 80%;
+        }     
+        .search-submit{ 
+            padding: 9px 15px;
+            float:right;    
+        }        
+}
+
+/*--------------------------------------------------------------
+5.1 Links
+--------------------------------------------------------------*/
+a {
+    color: #000066; /* por defeito colocar azul escuro */
+    text-decoration:none;
+}
+
+a:visited {
+    color: #333;
+    color: hsl(0, 0%, 20%);
+}
+
+a:hover, a:focus, a:active {
+	color: midnightblue;
+}
+
+a:focus {
+	outline: thin dotted;
+}
+
+a:hover, a:active {
+	outline: 0;
+}
+
+a:hover,
+a:focus,
+a:active { 
+    text-decoration: underline; 
+}
+
+/*--------------------------------------------------------------
+## Menus
+--------------------------------------------------------------*/
+.main-navigation {
+	clear: both;
+	display: block;
+	float: left;
+	width: 100%;
+}
+.main-navigation ul {
+	list-style: none;
+	margin: 0;
+	padding-left: 0;
+}
+.main-navigation li {
+	float: left;
+	position: relative;
+}
+.main-navigation a {
+	display: block;
+	text-decoration: none;
+}
+.main-navigation ul ul {
+	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+	display: none;
+	float: left;
+	left: 0;
+	position: absolute;
+	top: 1.5em;
+	z-index: 99999;
+}
+.main-navigation ul ul ul {
+	left: 100%;
+	top: 0;
+}
+.main-navigation ul ul a {
+	width: 200px;
+}
+.main-navigation ul ul li {
+}
+.main-navigation li:hover > a {
+}
+.main-navigation ul ul :hover > a {
+}
+.main-navigation ul ul a:hover {
+}
+.main-navigation ul li:hover > ul {
+	display: block;
+}
+.main-navigation .current_page_item a,
+.main-navigation .current-menu-item a {
+}
+/* Small menu */
+.menu-toggle {
+	cursor: pointer;
+	display: none;
+}
+@media screen and (max-width: 600px) {
+	.menu-toggle,
+	.main-navigation.toggled .nav-menu {
+		display: block;
+	}
+
+	.main-navigation ul {
+		display: none;
+	}
+}
+
+
+/*--------------------------------------------------------------
+5.2 Navigation Next e Previous para comentarios, pages e posts
+--------------------------------------------------------------*/
+/* Aplica-se aos Comentarios, Pages e aos Post's. */
+.site-main .comment-navigation,
+.site-main .paging-navigation,
+.site-main .paging-navnosidebar,
+.site-main .post-navigation {
+        font-size: 18px;
+        font-size: 1.8rem;
+        font-family: 'Marvel', sans-serif;
+        color: #000;
+        color: hsl(0, 0%, 0%);
+}
+.comment-navigation .nav-previous,
+.paging-navigation .nav-previous,
+.paging-navnosidebar .nav-previous,
+.post-navigation .nav-previous {
+    	width: 50%;
+        float: left;
+        padding-right: 15%;
+}
+.comment-navigation .nav-next,
+.paging-navigation .nav-next,
+.paging-navnosidebar .nav-next,
+.post-navigation .nav-next {
+        width: 50%;	
+        float: right;
+        padding-left: 15%;
+	    text-align: right;
+}
+
+
+.nav-indicator { 
+    margin-bottom: 0.5em; 
+}
+
+.nav-previous h1,
+.nav-next h1 { 
+    font-weight: 700; 
+}
+
+
+/* Adiciona duas linhas uma no top e outra no bottom no next e previous Pages e aos Post's. */
+.post-nav-box {
+    padding: 2em 0;
+    margin-bottom: 4em;
+    border-top: hsl(0, 0%, 80%) solid 1px;
+    border-bottom: hsl(0, 0%, 80%) solid 1px; 
+}
+
+/* Adiciona duas linhas uma no top e outra no bottom a navegação dos comentarios.  */
+.comment-navigation {
+    padding: 1em 0;
+    margin: 3em 0;
+    border-top: hsl(0, 0%, 80%) solid 1px;
+    border-bottom: hsl(0, 0%, 80%) solid 1px;  
+}
+.comment-navigation i {
+    margin: 0 1em;
+}
+
+
+
+/*--------------------------------------------------------------
+ Navegação das index pages
+--------------------------------------------------------------*/
+.paging-navigation ul {
+                        margin: 0;
+}
+.paging-navnosidebar ul {
+                        margin: 0;
+}
+.paging-navigation li { 
+                        display: inline; 
+}
+.paging-navnosidebar li { 
+                        display: inline; 
+}
+
+
+a.page-numbers,
+span.page-numbers {
+     padding: .3em .7em;
+     color: #333;
+     color: hsl(0, 0%, 20%);
+}
+
+a:hover.page-numbers {
+    color: #000;
+    color: hsl(0, 0%, 0%);
+}
+
+.paging-navigation .current,
+.paging-navnosidebar .current{
+    font-weight: bold;
+    color: #000;
+    color: hsl(0, 0%, 0%);
+}
+
+
+/*--------------------------------------------------------------
+5.3 Social media icon
+--------------------------------------------------------------*/
+/* deslocar para direira */
+.menu-social ul {
+    float: right;
+    text-align: center;
+    list-style: none;    
+}
+.menu-social ul li {
+    position: relative;
+    display:  inline-block;    
+}
+
+/* aplicar estilos genericos */
+.menu-social li a:before {
+    display: inline-block;
+    padding: 0 5px;
+    vertical-align: top;
+    font-family: 'Fontawesome';
+    font-size: 20px;
+    
+    color: #ffffff;
+    color: rgb(255, 255, 255);
+    color: hsl(0, 0%, 100%);
+    
+    -webkit-font-smoothing: antialiased;
+    content: '\f0c0';
+}
+
+/* os estilos vão reconhecer automaticamente que social media com os url e aplicar o icon */
+.menu-social li a[href*="facebook.com"]::before { content: '\f09a'; }
+.menu-social li a[href*="twitter.com"]::before { content: '\f099'; }
+.menu-social li a[href*="dribbble.com"]::before { content: '\f17d'; }
+.menu-social li a[href*="plus.google.com"]::before { content: '\f0d5'; }
+.menu-social li a[href*="pinterest.com"]::before { content: '\f0d2'; }
+.menu-social li a[href*="github.com"]::before { content: '\f09b'; }
+.menu-social li a[href*="tumblr.com"]::before { content: '\f173'; }
+.menu-social li a[href*="youtube.com"]::before { content: '\f167'; }
+.menu-social li a[href*="flickr.com"]::before { content: '\f16e'; }
+.menu-social li a[href*="vimeo.com"]::before { content: '\f194'; }
+.menu-social li a[href*="instagram.com"]::before { content: '\f16d'; }
+.menu-social li a[href*="linkedin.com"]::before { content: '\f0e1'; }
+
+
+
+/*--------------------------------------------------------------
+x.x Menu dropdown do header logout e change pass
+--------------------------------------------------------------*/
+.dropbtn {
+    background: #ffffff; /* branco */
+    background: hsl(0, 0%, 100%); 
+    color: #000; /* preto */
+    color: hsl(0, 0%, 0%);
+    padding: 16px;
+    font-size: 0.9em;
+    border: none;
+    cursor: pointer;
+    text-transform: lowercase;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #ffffff;
+    background-color: rgb(255, 255, 255);
+    background-color: hsl(0, 0%, 100%);
+    min-width: 140px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 7px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.9em;
+    text-align: center; /* obras */
+}
+
+.dropdown-content a:hover {
+    opacity: 0.8;
+    background-color:transparent;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    color: #fff;
+    color: hsl(0, 0%, 100%);
+    background: #e5e5e5;
+}
+
+
+
+
+
+
+
+/*--------------------------------------------------------------
+5.5 Navegação secundária - Breadcrumbs     
+--------------------------------------------------------------*/
+#breadcrumbs{
+    list-style:none;
+    margin:10px 0;
+    overflow:hidden;
+}
+#breadcrumbs li{
+    display:inline-block;
+    vertical-align:middle;
+    margin-right:15px;
+}
+  
+#breadcrumbs .separator{
+    font-size:18px;
+    font-weight:100;
+    color:#ccc;
+}
+ul.breadcrumbs {
+    padding: 10px 16px;
+    list-style: none;
+    font-size:15px;
+    font-weight:200;
+    font-family: "Source Sans Pro", "Arial", sans-serif;
+}
+
+
+/*--------------------------------------------------------------
+# Accessibility
+--------------------------------------------------------------*/
+/* Text meant only for screen readers. */
+.screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+	word-wrap: normal !important; /* Many screen reader and browser combinations announce broken words as they would appear visually. */
+}
+
+.screen-reader-text:focus {
+	background-color: #f1f1f1;
+	border-radius: 3px;
+	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	clip: auto !important;
+	clip-path: none;
+	color: #21759b;
+	display: block;
+	font-size: 14px;
+	font-size: 0.875rem;
+	font-weight: bold;
+	height: auto;
+	left: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 100000;
+	/* Above WP toolbar. */
+}
+
+/* Do not show the outline on the skip link target. */
+#content[tabindex="-1"]:focus {
+	outline: 0;
+}
+
+/*--------------------------------------------------------------
+7.0 Alinhamentos de imagens e texto
+--------------------------------------------------------------*/
+.alignleft {
+	display: inline;
+	float: left;
+	margin-right: 1.5em;
+}
+
+.alignright {
+	display: inline;
+	float: right;
+	margin-left: 1.5em;
+}
+
+.aligncenter {
+	clear: both;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Alinhamento responsive */
+/* So possivel de testar em ecras muito grandes */
+@media screen and (min-width: 1320px) {
+    .alignleft {
+        margin-left: -160px; 
+    }
+}
+
+@media screen and (min-width: 1820px) {
+    .alignright { 
+        margin-right: -160px; 
+    }
+}
+
+/*--------------------------------------------------------------
+# Clearings
+--------------------------------------------------------------*/
+.clear:before,
+.clear:after,
+.entry-content:before,
+.entry-content:after,
+.comment-content:before,
+.comment-content:after,
+.site-header:before,
+.site-header:after,
+.site-content:before,
+.site-content:after,
+.site-footer:before,
+.site-footer:after {
+	content: "";
+	display: table;
+	table-layout: fixed;
+}
+
+.clear:after,
+.entry-content:after,
+.comment-content:after,
+.site-header:after,
+.site-content:after,
+.site-footer:after {
+	clear: both;
+}
+
+
+/*--------------------------------------------------------------
+9.0 Header
+--------------------------------------------------------------*/
+/* conteudo da imagem */
+.header-image img {
+    display: block;
+    margin: 0 auto;
+}
+/* conteudo da imagem */
+.header-background-image {
+    background: no-repeat center;
+    background-size: cover!important;
+    -moz-background-size: cover!important;
+    -webkit-background-size: cover!important;
+}
+/* conteudo da imagem */
+.header-background-image {
+    background: #333;
+    background: hsla(0, 0%, 0%, .7);
+}
+/* conteudo que contem os textos do titulo e da descrição do header.php */
+.site-branding {
+    padding: 1rem 0;
+    text-align: center;
+     /* OBRAS ! */
+ /* background: #2c86ba;            
+    background: hsl(202, 62%, 45%); */
+    background: #ffffff;
+    background: rgb(255, 255, 255);
+    background: hsl(0, 0%, 100%);
+}
+/* caixa com linha branca dos textos do titulo e da descrição do header.php */
+.title-box {
+    width: 600px;
+    max-width: 95%;
+    padding: 4rem;
+    margin: 0 auto;
+    border: solid 2px #fff;  /* linha branca transparente */
+    border: solid 0px hsla(0, 0%, 100%, 0.0);  /* linha branca transparente */
+    
+}
+/* conteudo do titulo do header.php */
+.site-title {
+    font-weight: 700;
+    font-size: 30px;
+    font-size: 3rem;
+    text-transform: uppercase;
+    line-height: normal;
+    margin: 0;    /* OBRAS ! */
+ /* padding-bottom: 1rem; */
+}
+/* conteudo da descrição do header.php */
+.site-description {
+    font-weight: 700;
+    font-size: 30px;
+    font-size: 3rem;
+    padding-bottom: 1rem; /* OBRAS ! */
+}
+/* conteudo do titulo e da descrição do header.php */
+.site-title a,
+.site-description { 
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+}
+.logo{
+    padding-top: 1rem; /* OBRAS ! */
+}
+
+
+
+/* Header responsive */
+/* elimina a caixa com linha branca dos textos do titulo e da descrição do header.php */
+@media screen and (max-width: 600px) {
+    .site-branding { 
+        padding: 0; 
+    }    
+    /* conteudo da descrição  */
+    .site-description {
+    /*  font-weight: 400;
+        font-size: 20px;
+        font-size: 2rem; */
+        display: none; /* OBRAS ! */
+    }
+    /* conteudo do titulo */
+    .site-title {
+        font-weight: 400;
+        font-size: 25px;
+        font-size: 2.5rem;       
+        line-height: normal;
+        padding-bottom: 1rem;
+    }
+}
+
+/* Header responsive */
+@media only screen and (max-width: 320px) {
+    /* conteudo do titulo */
+    .site-title {
+        font-size: 16px;
+        font-size: 1.6rem;       
+        line-height: normal;
+        padding-bottom: 1rem;
+    }
+}
+
+
+
+/*--------------------------------------------------------------
+10.0 Widgets Sidebar, News e Footer
+--------------------------------------------------------------*/
+.widget {
+        margin: 0 0 4em;
+        font-family: 'Marvel', sans-serif;
+        font-size: 16px;
+        font-size: 1.6rem;
+}
+.widget-title {
+    margin-bottom: 1em;    
+    font-size: 24px;
+    font-size: 2.4rem;
+    border-bottom: 2px solid #000;    
+}
+.widget a {
+    font-weight: 700;
+    color: #000;
+    color: hsl(0, 0%, 0%);
+}
+.widget ul,
+.widget ol {
+    padding: 0;
+    margin: -1em 0 0;
+    list-style-type: none;
+}
+.widget li { padding: 1em 0 0; }
+.widget li ul,
+.widget li ol { margin-top: 0; }
+.widget li li { margin-left: 1.5em; }
+
+/* Fontawesome icons */
+.widget_archive li:before,
+.widget_recent_entries li:before,
+.widget_recent_comments li:before,
+.widget_archive li:before {
+    display: block;
+    float: left;
+    padding-top: 2px;
+    margin-left: -2.5em;
+    font-family: 'fontawesome';
+    font-size: 14px;
+    font-size: 1.4rem;
+} 
+.widget_archive li,
+.widget_recent_entries li,
+.widget_recent_comments li { margin: 0 0 .5em 2.5em; }
+.widget_archive li:before { content: "\f187"; }
+/*.widget_recent_entries li:before { content: "\f036"; }*/
+.widget_recent_entries li:before { content: "\f030"; }
+.widget_recent_comments li:before { content: "\f075"; }
+.widget_archive li { margin: 0 0 0 2.5em; }
+.widget_archive li:before { content: "\f187"; }
+
+/* RSS */
+.widget_rss li { margin-bottom: .5em; }
+.widget_rss .rss-date,
+.widget_rss cite {
+    display: block;
+    font-size: 85%;
+}
+
+
+/* Garantir que select elements cabem nos widgets */
+.widget select {
+	max-width: 100%;
+}
+/* Esconde o botao do Search widget */
+.widget_search .search-submit{
+    display: none;
+}
+
+/*--------------------------------------------------------------
+10.1 Footer Widgets - Flexible Box Model
+--------------------------------------------------------------*/
+/* Flexible Box Model */
+.footer-widgets { 
+    margin: 0 auto; 
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+/* definicoes gerais */
+.footer-widgets .widget-title,
+.footer-widgets .widget a:hover {
+    color: #ffffff;
+    color: rgb(255, 255, 255);
+    color: hsl(0, 0%, 100%);
+    border-color: #ffffff;
+    border-color: rgb(255, 255, 255);
+    border-color: hsl(0, 0%, 100%);
+}
+/* Flexible Box Model */
+.widget {
+    -webkit-flex: 1;
+    -ms-flex:1;
+    flex:1;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: column;
+    -ms-flex-flow: column;
+    flex-flow: column;
+    flex-direction: column;
+    margin: 0 2rem 2rem 2rem;
+}
+
+/* Flexible Box Model */
+@media screen and (max-width: 1159px) {     
+    .footer-widgets {
+        	-webkit-flex-direction: column;
+        	-ms-flex-direction: column;
+        	flex-direction: column;
+            margin: 1em auto 0;
+    }
+    .widget_recent_travel {
+        	-webkit-order: 1;
+        	-ms-flex-order: 1;
+        	order: 1;
+    }
+    .widget_gallery {
+            -webkit-order: 0;
+            -ms-flex-order: 0;
+            order: 0;
+    }
+    .widget widget_news {
+            -webkit-order: 2;
+            -ms-flex-order: 2;
+            order: 2;
+    }
+ }
+
+/*--------------------------------------------------------------
+10.2 News Widgets
+--------------------------------------------------------------*/
+.sidebar-post {
+    padding: 20px 15px;
+    -moz-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    -webkit-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    background: white;
+}
+
+
+
+
+
+/*--------------------------------------------------------------
+11.0 Conteudo
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+11.1 Posts a as pages
+--------------------------------------------------------------*/
+
+/* Tipografia titulo e conteudo Posts a as pages */
+.entry-title {
+    margin: 0 0 2rem;
+    font-weight: 100;
+    font-size: 32px;
+    font-size: 3.2rem;
+    line-height: 1.3em;
+    color: #000;
+    color: hsl(0, 0%, 0%);
+}
+
+/* Paginas */
+.page .entry-title {
+    margin-top: .7em;   
+}
+
+/* Sublinhado para todos os links */
+.entry-content a { 
+    text-decoration: underline; 
+}
+
+/* Tipografia global definir font-size conteudo posts e pages */
+/* Definine o tamanho da fonte por defeito isto é as globais */
+.entry-content h1,
+.entry-content h2,
+.entry-content h3,
+.entry-content h4,
+.entry-content h5,
+.entry-content h6 { 
+    margin-bottom: .4em; }
+.entry-content h1 {
+    font-size: 32px;
+    font-size: 3.2rem;
+}
+.entry-content h2 {
+    font-size: 30px;
+    font-size: 3.0rem;
+}
+.entry-content h3 {
+    font-size: 28px;
+    font-size: 2.8rem;
+}
+.entry-content h4 {
+    font-size: 26px;
+    font-size: 2.6rem;
+}
+.entry-content h5 {
+    font-size: 24px;
+    font-size: 2.4rem;
+}
+.entry-content h6 {
+    font-size: 22px;
+    font-size: 2.2rem;
+}
+.entry-content p,
+.entry-content ul,
+.entry-content ol {
+    font-size: 18px;
+    font-size: 1.8rem;
+    line-height: 1.6em;
+}
+.entry-content blockquote p {
+    font-size: 20px;
+    font-size: 2.0rem;
+    line-height: 1.5em;
+}
+
+/* Tipografia max-width: 680px definir font-size conteudo posts e pages ecras menores */
+/* conceito de define dimensões das fontes com base nos ecras que se utiliza */
+/* Reducao das fonts para ecras mais pequenos < 680px */
+@media screen and (max-width: 680px) {
+    .entry-title {
+        font-size: 32px;
+        font-size: 3.2rem;
+        line-height: 1.3em;
+    }
+    .entry-content h1 {
+        font-size: 28px;
+        font-size: 2.8rem;
+    }
+    .entry-content h2 {
+        font-size: 26px;
+        font-size: 2.6rem;
+    }
+    .entry-content h3 {
+        font-size: 24px;
+        font-size: 2.4rem;
+    }
+    .entry-content h4 {
+        font-size: 22px;
+        font-size: 2.2rem;
+    }
+    .entry-content h5 {
+        font-size: 20px;
+        font-size: 2rem;
+    }
+    .entry-content h6 {
+        font-size: 18px;
+        font-size: 1.8rem;
+    }
+    .entry-content p,
+    .entry-content ul,
+    .entry-content ol  {
+        font-size: 16px;
+        font-size: 1.6rem;
+    }    
+    .entry-content blockquote p {
+        font-size: 22px;
+        font-size: 2.2rem;
+        line-height: 1.5em;
+    }
+}
+
+
+/*--------------------------------------------------------------
+11.1.1 Taxonomies
+--------------------------------------------------------------*/
+.taxonomies {
+    font-family: 'Marvel', sans-serif;
+    font-size: 18px;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+}
+
+.taxonomies a {
+    font-weight: 600;
+}
+
+/* OBRAS !*/
+.fotografias-header{
+    padding: 3px 2rem;
+    /*margin-top: -1.8em;*/
+    background: hsl(0, 0%, 25%);
+    font-family: 'Marvel', sans-serif;
+    font-size: 80%;
+    text-transform: uppercase;
+    color: white;
+}
+
+/*--------------------------------------------------------------
+11.1.2 Custom Post Type aleatorios front-page 
+       Flexible box Model
+--------------------------------------------------------------*/
+#fotografias {
+	margin-bottom: 2em;
+}
+#fotografias {    
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;    
+    background: #ffffff;
+    background:rgb(255, 255, 255);
+    background:hsl(0, 0%, 100%);
+    padding: 4rem;
+}
+.fotografia {
+    	-webkit-flex: 1;
+	-ms-flex:1;
+	flex:1;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-flow: column;
+	-ms-flex-flow: column;
+	flex-flow: column;
+	flex-direction: column; 
+}
+.fotografia {
+	margin-right: 2em;	
+}
+.fotografia:last-child {
+	margin-right: 0;
+}
+/*.fotografia h3 {
+	font-size: 2em;
+	margin: .4em 0;
+	padding-left: 1.2rem;	
+}*/
+.fotografia p {
+    line-height: 1.3em;
+    margin-bottom: 1.5em;
+    font-size: 0.9em;
+}
+.fotografia h2 {
+    line-height: 1.2em;
+    color: #0072bc;
+    font-size: 26px;
+    clear: both;
+    margin-bottom: 1em;
+}
+/*.fotografia-thumb img {
+    text-align: center;
+}*/
+
+/*@media (max-width: 1625px){
+    .fotografia img {
+         width: 350px;
+         }
+}*/
+
+.fotografia-thumb img {
+    display: block;
+    margin: 0 auto 2rem;
+}
+
+@media only screen and (max-width: 920px) {
+    #fotografias {
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+    }    
+    .fotografia {
+        margin-right: 0;
+        margin-bottom: 1em;
+        border: none;
+    }    
+    .fotografia h2 {
+        font-size: 1.6em;
+        margin: .4em 0;
+        padding-left: 1.2rem;	
+    }    
+    .fotografia p {
+        font-size: .9em;
+        line-height: 1.6;
+        padding: 0 1.2rem;
+    }
+}
+
+/*--------------------------------------------------------------
+11.2 Meta dados     
+--------------------------------------------------------------*/
+/* Lista de categorias */
+.category-list {
+    margin: 1.3em 0 1em;
+    font-family: 'Marvel', sans-serif;
+    font-size: 16px;
+    font-size: 1.6rem;
+}
+.category-list a {
+    color: #333;
+    color: hsl(0, 0%, 10%);
+}
+.category-list a:hover {
+    color: #000;
+    color: hsl(0, 0%, 0%);
+}
+
+/* Post elemento composto por Taken by...data...comment. */
+.entry-meta {
+    margin-bottom: 2rem;
+    padding: 0;
+    font-family: 'Marvel', sans-serif;
+    font-size: 14px;
+    font-size: 1.4rem;
+}
+.entry-meta a { 
+    font-weight: 600; 
+}
+
+/* Lista das Tags */
+.entry-footer {
+    margin-top: 3rem;
+    margin-bottom: 5rem;
+    font-family: 'Marvel', sans-serif;
+    font-size: 16px;
+    font-size: 1.6rem;
+    line-height: 2em;
+}
+.entry-footer ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+.entry-footer li {
+    display: inline-block;
+    margin-right: 4rem;
+}
+.entry-footer a {
+    margin-left: .5rem;
+}
+
+/* globais */
+.sticky {
+	display: block;
+}
+.hentry {
+  /*	margin: 0 0 1.5em;*/
+        margin: 0;
+}
+.updated:not(.published) {
+	display: none;
+}
+.page-content,
+.entry-content,
+.entry-summary {
+	margin: 1.5em 0 0;   /* top 1.5em right/left 0 bottom 0 */
+}
+.page-links {
+	clear: both;
+	margin: 0 0 1.5em;
+}
+
+/* Post elemento composto por Taken by...data...comment deslocar esquerda min-width: 1320px */
+/* nos ecras maiores do que 1320px */
+@media screen and (min-width: 1320px){
+    .single .entry-meta {
+        width: 120px;
+        margin-left: -160px;
+        float: left;
+        text-align: right;
+    }
+    
+    .single .byline,
+    .single .posted-on {
+        display: block;
+        margin-bottom: 1em;
+    }
+}
+
+/*--------------------------------------------------------------
+  11.2.1 Meta single post         
+--------------------------------------------------------------*/
+/* Pseudo-Elements Post elemento composto por ...data... */
+/*@media screen and (max-width: 1319px){
+    .posted-on:before {
+        content: ' on ';
+    }
+    .posted-on:after {
+        content: '.';
+    }
+}*/
+/* codigo melhorado para as paginas index */
+.posted-on:before {
+    content: ' on ';
+}
+.posted-on:after {
+    content: '. ';
+}
+
+@media screen and (min-width: 1320px) {
+    .single .posted-on:before,
+    .single .posted-on:after {
+        content: '';
+    }
+}
+
+/*--------------------------------------------------------------
+11.2.2 Blockquotes (citacoes)       
+--------------------------------------------------------------*/
+/* Adicionar linhas top e bottom  */
+blockquote {
+    padding: 1em 1.5em 0;
+    margin-bottom: 1em;
+    font-style: italic;
+    border-top: solid 1px hsl(0, 0%, 80%);
+    border-bottom: solid 1px hsl(0, 0%, 80%);
+}
+blockquote em { 
+    font-style: normal; 
+}
+
+/* Bloco de citação e citar */
+blockquote cite {
+    display: block;
+    margin-top: 1em;
+    margin-left: 40%;
+    font-size: 18px;
+    font-size: 1.8rem;
+    font-family: 'Marvel', sans-serif;
+    font-style: normal;
+    line-height: 1.5em;
+    text-align: right;
+}
+/* Alinhar esquerda utilizado a class standard .alignleft */
+blockquote.alignleft {
+    width: 50%;
+    float: left;
+    padding: 1em 0 0;
+    margin-right: 2em;
+}
+/* Alinhar direita utilizado a class standard .alignright */
+blockquote.alignright {
+    width: 50%;
+    float: right;
+    padding: 1em 0 0;
+    margin-left: 2em;
+}
+
+/* Blockquotes responsive */
+/* Optional rules that set blockquotes to full width on smaller screens */
+@media screen and (max-width: 780px) {
+    blockquote.alignleft,
+    blockquote.alignright { width: 40%; }
+}
+
+@media screen and (max-width:600px) {
+    blockquote.alignleft,
+    blockquote.alignright {
+        width: 100%;
+        padding: 1em 1.5em 0;   
+    }
+}
+
+
+/*--------------------------------------------------------------
+11.3 Asides
+--------------------------------------------------------------*/
+/*.blog .format-aside .entry-title,
+.archive .format-aside .entry-title{
+    display: none;
+}*/
+
+/*--------------------------------------------------------------
+11.3 Asides post formats
+     Substitui o 11.3 Asides por este 11.3 Asides post formats
+--------------------------------------------------------------*/
+.format-aside .entry-content {
+    margin-top: 1em;
+}
+
+/*--------------------------------------------------------------
+11.4 Comentarios
+--------------------------------------------------------------*/
+/* titulo */
+.comments-title {
+    font-weight: 700;
+    font-size: 36px;
+    font-size: 3.6rem;
+}
+
+/* retirar a numeracao dos comentarios */
+.comments-area > ol {
+    padding: 0;
+    margin: 2em 0;
+    list-style-type: none;
+}
+ol.children { list-style-type: none; }
+
+/* deslocar para a direta 50px para alinhar */
+.comment-list ol { margin-left: 50px; }
+
+/* metadata */
+.comment-meta { margin-bottom: 1em; }
+.comment-author .avatar {
+    width: 50px;
+    display: block;
+    float: left;
+    margin-right: 20px;
+}
+
+.comment-author .fn {
+    font-weight: 700;
+    font-family: 'Marvel', sans-serif;
+    font-size: 20px;
+    font-size: 2rem;
+}
+
+.comment-metadata {
+    font-size: 14px;
+    font-size:1.4rem;
+}
+
+/* dimensão do texto */
+.comment-content { font-size: 95%; }
+.comment-content,
+.reply { margin-left: 70px; }
+
+/* adicionar linha e margem para separar cada comentario */
+.comment-body {
+    padding-bottom: 2em;
+    margin-bottom: 2em;
+    border-bottom: solid hsl(0, 0%, 80%) 1px;
+}
+
+.comment-content a {
+	word-wrap: break-word;
+}
+.comment-content ol { margin-left: 1.5em; }
+
+/* botao Replay */
+.reply {
+    font-weight: 600;
+    font-family: 'Marvel', sans-serif;
+    font-size: 16px;
+    font-size: 1.6rem;
+}
+
+/* os meus comentarios isto é os realizados pelo autor 
+   criar uma fundo cinzento para separa do resto do conteudo */
+.bypostauthor > .comment-body {
+    position: relative;
+    padding: 1em;
+    margin-bottom: 2em;
+    background: hsl(0, 0%, 93%);
+    border: none;
+}
+
+/* Comentarios responsive */
+@media screen and (max-width:600px) {    
+    .comment-list ol { margin-left: 0; }    
+    .comment-content ol { margin-left: 1.5em; }    
+    .comment-content,
+    .reply { margin-left: 0; }
+}
+
+/* Comentarios form */
+.comment-reply-title {
+    margin-bottom: .5em;
+    font-weight: 700;
+    font-size: 30px;
+    font-size: 3rem;
+}
+
+.comment-form {
+    padding-bottom: 4rem;
+    font-family: 'Marvel', sans-serif;
+    font-size: 16px;
+    font-size: 1.6rem;
+}
+
+.comment-form textarea {
+    font-family: 'PT Serif', serif;
+    font-size: 18px;
+    font-size: 1.8rem;
+}
+
+/* Texto dos levels para cima do campo */
+.comment-form label { display: block; }
+.required { color: red; }
+
+/* Aviso que o comentario esta pendente de validação 
+   Setting -> Discussion Settings -> Before a comment appears 
+    Comment must be manually approved  
+    Comment author must have a previously approved comment */
+.comment-awaiting-moderation { /* Green background color to make moderation seem less aggressive */
+    padding: .5rem 1rem;
+    margin: 1rem 0;
+    font-family: 'Marvel', sans-serif;
+    font-size: 16px;
+    font-size: 1.6rem;
+    color: #fff;
+    color: hsl(0, 0%, 100%);
+    background: #84bd68;
+    background: hsl(100, 39%, 57%);
+}
+
+/*--------------------------------------------------------------
+11.5 Index and Archive
+--------------------------------------------------------------*/
+.continue-reading {
+    margin: 0 4rem;
+    font-weight: 700;
+    font-size: 18px;
+    font-size: 1.8rem;
+}
+.continue-reading i { margin-left: .5em; }
+
+.page-title{   
+    font-weight: 700;
+    font-size: 32px;
+    font-size: 3.2rem;
+}
+
+/*--------------------------------------------------------------
+11.6 Stick post
+--------------------------------------------------------------*/
+.sticky-post {
+    position: absolute;
+    top: 1rem;
+    right: 3rem;
+}
+
+/*--------------------------------------------------------------
+11.7 Archive descricao
+     o nome da class era taxonomy-description
+--------------------------------------------------------------*/
+
+.archive-description {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin: 2rem 0;
+    font-family: 'Marvel', sans-serif;
+    font-style: italic;
+    border-top: 1px solid hsl(0, 0%, 75%);
+    border-bottom: 1px solid hsl(0, 0%, 75%);
+}
+
+/*--------------------------------------------------------------
+11.8 Paginas Portfolio e Travels Grid Layout Flexbox 
+--------------------------------------------------------------*/
+/* Pagina Portfolio */
+.categories-boxPortfolio{
+    background: #ffffff;
+    background:rgb(255, 255, 255);
+    background:hsl(0, 0%, 100%);
+    /* top e bottom 20px right e left 40px */
+    /* padding: 20px 40px; */
+    /* top right bottom left */
+    padding: 20px 40px 60px 40px;
+}
+
+.grid-wrapPortfolio {
+	display: flex;		
+	flex-flow: row wrap;	   
+	align-items: center;	
+	justify-content: center;
+	list-style: none;	
+}
+
+ul.grid-wrapPortfolio {
+	margin-left: 0;
+}
+
+.grid-itemPortfolio {
+	flex-basis: 300px;	
+	height: 300px;		
+	padding: 10px;		
+	margin: 10px;	
+}
+
+.grid-itemPortfolio img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+    margin-bottom: 20px;
+	max-width: 400px;	   
+}
+
+.grid-itemPortfolio h2 {
+	line-height: 1.2em;
+        color: #0072bc;  
+        font-size: 26px;
+        clear: both;
+        margin-bottom: 1em;
+}
+.grid-itemPortfolio p {
+	line-height: 1.3em;        
+    margin-bottom: 1.5em;
+ /*   font-size: 0.9em; */
+
+}
+
+/* Opcao de imagem para categorias privadas */
+.container-img{
+
+}
+    
+.centered-img{
+    text-align: center;
+    padding:15px;
+}
+/* Frase de categorias privadas */
+.locked{
+    text-align: center;  /* OBRAS */
+    padding-bottom: 25px;
+}
+
+/* Frase de categorias privadas */
+.unlocked{
+    text-align: center; /* OBRAS */
+    padding-bottom: 25px;  /* OBRAS */
+}
+.grid-box{
+    background: rgba(255,255,255,1);
+    background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 4%, rgba(255,255,255,1) 5%, rgba(247,247,247,1) 15%, rgba(237,234,237,1) 31%, rgba(246,246,246,1) 53%, rgba(255,255,255,1) 83%, rgba(255,255,255,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(4%, rgba(255,255,255,1)), color-stop(5%, rgba(255,255,255,1)), color-stop(15%, rgba(247,247,247,1)), color-stop(31%, rgba(237,234,237,1)), color-stop(53%, rgba(246,246,246,1)), color-stop(83%, rgba(255,255,255,1)), color-stop(100%, rgba(255,255,255,1)));
+    background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 4%, rgba(255,255,255,1) 5%, rgba(247,247,247,1) 15%, rgba(237,234,237,1) 31%, rgba(246,246,246,1) 53%, rgba(255,255,255,1) 83%, rgba(255,255,255,1) 100%);
+    background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 4%, rgba(255,255,255,1) 5%, rgba(247,247,247,1) 15%, rgba(237,234,237,1) 31%, rgba(246,246,246,1) 53%, rgba(255,255,255,1) 83%, rgba(255,255,255,1) 100%);
+    background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 4%, rgba(255,255,255,1) 5%, rgba(247,247,247,1) 15%, rgba(237,234,237,1) 31%, rgba(246,246,246,1) 53%, rgba(255,255,255,1) 83%, rgba(255,255,255,1) 100%);
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 4%, rgba(255,255,255,1) 5%, rgba(247,247,247,1) 15%, rgba(237,234,237,1) 31%, rgba(246,246,246,1) 53%, rgba(255,255,255,1) 83%, rgba(255,255,255,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff', GradientType=0 );
+}
+
+
+.locked-word{
+    color:#000000;
+    color:rgb(0, 0, 0);
+}
+.unblock-word{
+    color:#008000;
+    color:rgb(0, 128, 0);
+}
+
+@media (max-width: 1850px) {
+	.grid-itemPortfolio {
+		flex-basis: 300px;
+	}
+	.grid-itemPortfolio img {
+		width: 300px;
+	}
+	.grid-wrapPortfolio {
+		justify-content: flex-start;
+	}
+}
+
+@media (max-width: 1625px) {
+	.grid-itemPortfolio {
+		flex-basis: 350px;
+	}
+	.grid-itemPortfolio img {
+		width: 350px;
+	}
+	.grid-wrapPortfolio {
+		justify-content: center;
+	}
+}
+
+@media (max-width: 1330px) {
+	.grid-itemPortfolio {
+		flex-basis: 300px;
+	}
+	.grid-itemPortfolio img {
+		width: 300px;
+	}
+	.grid-wrapPortfolio {
+		justify-content: center;
+	}
+}
+
+@media (max-width: 1120px) {
+	.grid-itemPortfolio {
+		flex-basis: 280px;
+	}
+	.grid-itemPortfolio img {
+		width: 280px;
+	}
+	.grid-wrapPortfolio {
+		justify-content: center;
+	}
+}
+
+@media (max-width: 1060px) {
+	.grid-itemPortfolio {
+		flex-basis: 250px;
+	}
+	.grid-itemPortfolio img {
+		width: 250px;
+	}
+	.grid-wrapPortfolio {
+		justify-content: center;
+	}
+}
+
+
+@media (max-width: 955px) {
+	.grid-itemPortfolio {
+		flex-basis: 350px;
+	}
+	.grid-itemPortfolio img {
+		width: 350px;
+	}
+	.grid-wrapPortfolio {
+		justify-content: center;
+	}
+}
+
+@media screen and (min-width: 600px) {
+    .grid-wrapPortfolio {
+        -moz-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+        -webkit-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+        box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+     /* top e bottom 20px right e left 30px */
+     /* padding: 20px 30px; */
+     /* top right bottom left */
+        padding: 40px 0px 40px 0px;
+    }
+}
+
+@media screen and (max-width: 599px) {
+    .grid-itemPortfolio img {
+        -moz-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+        -webkit-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+        box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); 
+    }
+}
+
+/* Travel */
+
+.categories-boxTravel{
+    background: #ffffff;
+    background:rgb(255, 255, 255);
+    background:hsl(0, 0%, 100%);
+    padding: 20px 40px;
+}
+
+.grid-wrapTravel {
+	display: flex;		 
+	flex-flow: row wrap;	         
+	align-items: center;		
+	justify-content: center;	
+	list-style: none;	
+}
+
+ul.grid-wrapTravel {
+	margin-left: 0;
+}
+
+.grid-itemTravel {
+	flex-basis: 400px;	
+	height: 500px;		
+	padding: 10px;		
+	margin: 10px;		        
+}
+
+.grid-itemTravel img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+        margin-bottom: 20px;
+	max-width: 400px;	        
+}
+
+.grid-itemTravel h2 {
+	line-height: 1.2em;
+        color: #0072bc;  
+        font-size: 26px;
+        clear: both;
+        margin-bottom: 1em;
+}
+.grid-itemTravel p {
+	line-height: 1.3em;        
+        margin-bottom: 1.5em;
+        font-size: 0.9em;
+}
+
+@media (max-width: 1850px) {
+	.grid-itemTravel {
+		flex-basis: 300px;
+	}
+	.grid-itemTravel img {
+		width: 300px;
+	}
+	.grid-wrapTravel {
+		justify-content: flex-start;
+	}
+}
+
+@media (max-width: 1625px) {
+	.grid-itemTravel {
+		flex-basis: 350px;
+	}
+	.grid-itemTravel img {
+		width: 350px;
+	}
+	.grid-wrapTravel {
+		justify-content: center;
+	}
+}
+
+@media (max-width: 1330px) {
+	.grid-itemTravel {
+		flex-basis: 300px;
+	}
+	.grid-itemTravel img {
+		width: 300px;
+	}
+	.grid-wrapTravel {
+		justify-content: center;
+	}
+}
+
+@media (max-width: 1120px) {
+	.grid-itemTravel {
+		flex-basis: 280px;
+	}
+	.grid-itemTravel img {
+		width: 280px;
+	}
+	.grid-wrapTravel {
+		justify-content: center;
+	}
+}
+
+@media (max-width: 1060px) {
+	.grid-itemTravel {
+		flex-basis: 250px;
+	}
+	.grid-itemTravel img {
+		width: 250px;
+	}
+	.grid-wrapTravel {
+		justify-content: center;
+	}
+}
+
+
+@media (max-width: 955px) {
+	.grid-itemTravel {
+		flex-basis: 350px;
+	}
+	.grid-itemTravel img {
+		width: 350px;
+	}
+	.grid-wrapTravel {
+		justify-content: center;
+	}
+}
+
+@media screen and (min-width: 600px) {
+    .grid-wrapTravel {
+        -moz-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+        -webkit-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+        box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+        padding: 40px 0px 40px 0px;
+    }
+}
+
+@media screen and (max-width: 599px) {
+    .grid-itemTravel img {
+        -moz-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+        -webkit-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+        box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); 
+    }
+}
+
+/*--------------------------------------------------------------
+11.9 Home -> Slideshow com CSS3 sem javaScript
+     utiliza @keyframes
+--------------------------------------------------------------*/
+
+@keyframes slidy {
+0% { left: 0%; }
+20% { left: 0%; }
+25% { left: -100%; }
+45% { left: -100%; }
+50% { left: -200%; }
+70% { left: -200%; }
+75% { left: -300%; }
+95% { left: -300%; }
+100% { left: -400%; }
+}
+div#slider { overflow: hidden; }
+
+/* se considerar que o <figure> elemento é 100% largura, 
+   entao cada imagem precisa ocupar ⅕ do espaço horizontal */
+div#slider figure img { 
+    width: 20%; 
+    float: right; 
+    height: auto;
+}
+div#slider figure { 
+  position: relative;
+  width: 500%;
+  margin: 0;
+  left: 0;
+  text-align: left;
+  font-size: 0;
+  -webkit-animation: slidy 30s infinite; /* Safari 4+ */
+  -moz-animation:    slidy 30s infinite; /* Fx 5+ */
+  -o-animation:      slidy 30s infinite; /* Opera 12+ */
+  animation:         slidy 30s infinite; /* IE 10+, Fx 29+ */
+}
+
+/* INCIO OBRAS */
+div#slider figure figcaption { 
+  position: absolute; 
+  top: 50px;
+  background: rgba(0,0,0,0.4);
+  color: #fff; width: 100%;
+  font-size: 2rem; padding: .6rem; 
+}
+/* FIM OBRAS */
+
+/*--------------------------------------------------------------
+# Infinite scroll
+--------------------------------------------------------------*/
+/* Globally hidden elements when Infinite Scroll is supported and in use. */
+.infinite-scroll .posts-navigation,
+.infinite-scroll.neverending .site-footer {
+	/* Theme Footer (when set to scrolling) */
+	display: none;
+}
+
+/* When Infinite Scroll has reached its end we need to re-display elements that were hidden (via .neverending) before. */
+.infinity-end.neverending .site-footer {
+	display: block;
+}
+
+
+/*--------------------------------------------------------------
+11.10 Pagina listagem utlizadores
+--------------------------------------------------------------*/
+.caixa-users{
+    overflow-x:auto;
+    padding: 30px;
+}
+/* tabela listagem de utilizadores */
+#lista-users{
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+#lista-users th, td {
+    text-align: left;
+    padding: 8px;
+}
+#lista-users tr:hover {background-color: #ffffb3;}
+
+.registered-users{
+    padding: 20px 70px;
+} 
+
+/* editar e apagar os utilizadores registados */
+.edit_user-box,
+.delete_user-box{
+    padding: 60px 25%;
+}
+/* listar os utilizadores registados */
+.registered_users-box{
+    padding: 20px 10%;
+}
+
+.edit_user-box input[type="text"]{
+    width: 100%;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.delete_user-box input[type="submit"],
+.edit_user-box input[type="submit"]{
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-family: inherit;
+    font-size: 100%;
+}
+
+.delete_user-box input[type="radio"]{
+    margin: 12px 0;
+}
+
+.edit-first_name, 
+.edit-last_name,
+.edit-email_address,
+.delete_note,
+.delete_botao,
+.delete_name{
+    margin: 12px 0;
+}
+
+.edit_user,
+.delete_user{
+    padding: 20px 70px;
+    border: 1px solid #888;
+    border-radius: 7px;
+}
+
+
+
+
+/*--------------------------------------------------------------
+13.0 Media
+--------------------------------------------------------------*/
+.page-content .wp-smiley,
+.entry-content .wp-smiley,
+.comment-content .wp-smiley {
+	border: none;
+	margin-bottom: 0;
+	margin-top: 0;
+	padding: 0;
+}
+
+/* Make sure embeds and iframes fit their containers. */
+embed,
+iframe,
+object {
+	max-width: 100%;
+}
+
+/* Make sure logo link wraps around logo image. */
+.custom-logo-link {
+	display: inline-block;
+}
+
+/*--------------------------------------------------------------
+13.1 Featured Image
+     O pattern.svg para preencher quando a imagem é pequena.
+--------------------------------------------------------------*/
+.single-post-thumbnail { 
+    background: #b2b2b2 url(img/pattern.svg) repeat; 
+ /* background: white; */
+}
+.single-post-thumbnail img {
+    display: block;
+    margin: 0 auto; /* alinha ao centro quando temos imagem pequena */
+}
+
+/* fallback isto é o plano alternativo */
+/* solucao para quando temos imagens pequenas e 
+   para quando temos imagens exibidas em ecras muito grandes */
+@media screen and (min-width: 1820px) {
+    .image-shifter {
+        width: 1060px;
+        float: none;
+        margin: 0 auto;
+    }
+}
+@media screen and (min-width: 1540px) and (max-width: 1820px) {
+    .image-shifter { margin-right: 380px;}
+}
+
+@media screen and (min-width: 1440px) and (max-width: 1819px) {
+    .image-shifter {
+        width: 1060px; 
+        float: right;
+    }
+}
+
+/* aplica-se para destacar o primeiro post da fronte page
+   o post fica ligeiramente em cima da feature image */
+.front-index-thumbnail {
+    margin-bottom: -3.2em;
+}
+
+@media screen and (max-width: 779px){
+    .front-index-thumbnail {
+        margin-bottom: 0;
+    }
+}
+.single-post-thumbnail img,
+.front-index-thumbnail img {
+    display: block;
+    margin: 0 auto;
+}
+
+.has-thumbnail {
+    position: relative;
+    margin-top: -8em;
+}
+
+
+
+/* alinhamento das feature images das paginas index das tags do content.php */
+.small-index-thumbnail { 
+    margin-top: -1em;
+    margin-bottom: 1em;
+}
+
+/*--------------------------------------------------------------
+13.2 Caption das imagens
+--------------------------------------------------------------*/
+.wp-caption {
+	margin-bottom: 1.5em;
+	max-width: 100%;
+}
+.wp-caption img[class*="wp-image-"] {
+	display: block;
+	margin: 0 auto;
+}
+.wp-caption-text {
+	text-align: center;
+}
+.wp-caption .wp-caption-text,
+.gallery-caption{
+    padding: 0.8075em 1em;
+    font-size: 14px;
+    font-size: 1.4rem;
+    font-family: 'Marvel', sans-serif;
+    background: #e5e5e5;
+    background: hsl(0, 0%, 90%);
+}
+
+/*--------------------------------------------------------------
+13.x Galleries captions
+--------------------------------------------------------------*/
+.gallery {
+	margin-bottom: 1.5em;
+	padding-bottom: 40px;
+	padding-top: 40px;  /* OBRAS */
+}
+.site-main .gallery-item {
+    position: relative;    
+    max-width:100%;
+    float: left;
+    margin-right: 3.333333333%;
+    margin-bottom: 3rem;
+    background: #333;
+    overflow: hidden;
+}
+.gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    max-height: 50%;
+    width: 100%;
+    padding: 6px 8px;
+    margin: 0;
+    font-size: 16px; /* OBRAS era 12px */
+    line-height: 1.5;
+    color: #fff;
+    text-align: left;
+    background-color: hsla(0, 0%, 0%, .8); 
+    opacity: 0;
+    text-align: center; /* OBRAS novo*/
+}
+.gallery-item:hover .gallery-caption { 
+    opacity: 1; 
+}
+.site-main .gallery a img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border: none;
+}
+
+
+
+/*
+.gallery-columns-2 .gallery-item {
+	max-width: 50%;
+}
+.gallery-columns-3 .gallery-item {
+	max-width: 33.33%;
+}
+.gallery-columns-4 .gallery-item {
+	max-width: 25%;
+}
+.gallery-columns-5 .gallery-item {
+	max-width: 20%;
+}
+.gallery-columns-6 .gallery-item {
+	max-width: 16.66%;
+}
+.gallery-columns-7 .gallery-item {
+	max-width: 14.28%;
+}
+.gallery-columns-8 .gallery-item {
+	max-width: 12.5%;
+}
+.gallery-columns-9 .gallery-item {
+	max-width: 11.11%;
+}
+.gallery-caption {
+	display: block;
+}
+*/
+
+/*--------------------------------------------------------------
+13.3 Gallery (OBRAS !)
+--------------------------------------------------------------*/
+
+#contentCategorias{
+    padding: 20px 40px 60px 40px;
+}
+
+
+
+
+/*--------------------------------------------------------------
+13.3.1 Gallery lightbox do menu Portfolio
+--------------------------------------------------------------*/
+/* div principal  */
+.content-portfolio{
+    position: relative;
+    max-width: 1000px;
+    /* max-width: 178rem; */
+    padding: 0 4rem;
+    margin: 0 auto;     
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  /* padding: 0 4px; */
+}
+.gallery-item {
+  flex: 25%;
+  max-width: 25%;
+  padding: 0 4px;
+}
+
+.gallery-item img {
+  margin-top: 8px;
+  vertical-align: middle;
+}
+
+/* Lightbox */
+
+/*  Style the Image Used to Trigger the Modal */
+.attachment-large {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s; 
+}
+
+.attachment-large:hover {
+    opacity: 0.7;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none;  /*Hidden by default */
+    position: fixed;  /*Stay in place */
+    z-index: 1;  /*Sit on top */
+    padding-top: 100px;  /*Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;  /* Full width */
+    height: 100%;  /*Full height */
+    overflow: auto;  /*Enable scroll if needed */
+    background-color: rgb(0,0,0);  /*Fallback color */
+    background-color: rgba(0,0,0,0.9);  /*Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    background-color:#ffffff;
+    background-color:rgb(255, 255, 255);
+    background-color:hsl(0, 0%, 100%);
+    color:#000000;
+    color:rgb(0, 0, 0);
+    color:hsl(0, 0%, 0%);
+}
+/* Add Animation - Zoom in the Modal */
+.modal-content, #caption {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)}
+    to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+/* Botao para fechar a janela */
+.close {
+  position: absolute;
+  right: 32px;
+/*  top: 32px;*/
+  width: 32px;
+  height: 32px;
+/*   opacity: 0.3; */
+}
+.close:hover {
+  opacity: 1;
+  cursor: pointer;  
+  
+}
+.close:before, .close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 2px;
+  background-color: white;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+.close {
+     color:red;
+   
+}
+.close:hover, .close:focus {
+    cursor: pointer;
+   background-color:#564e4e;
+   
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+    .modal-content {
+        width: 100%;
+    }
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+  .gallery-item {
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .gallery-item {
+    flex: 100%;
+    max-width: 100%;
+  }
+}
+
+/* colocar as sombras nas imagens individuais em ecras menores 1040px */
+@media screen and (min-width: 1040px) {
+    .content-portfolio {
+        -moz-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+        -webkit-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+        box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+        /* padding: 20px 30px; */
+        /* top bottom 20px right left 30px */
+        /* top right bottom left */
+    }
+}
+
+/* colocar as sombras nas imagens individuais em ecras menores 600px */
+@media screen and (max-width: 1039px) {
+    .gallery-item img {
+        -moz-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+        -webkit-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+        box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    }
+}
+
+/*--------------------------------------------------------------
+14.0 Contact form
+--------------------------------------------------------------*/
+
+.contact-box {
+    padding: 60px 15%;
+    -moz-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    -webkit-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    background-color: #ffffff;
+}
+
+.contact-box input[type="text"]{
+    width: 100%;
+    padding: 12px 20px;
+    /* margin: 8px 0; */
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.contact-box input[type="submit"] {
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-family: inherit;
+    font-size: 100%;
+}
+
+.contact-message{
+    margin: 8px 0;
+}
+
+.match_result{
+    padding: 8px 0 30px 0;
+}
+.control-label {
+     float: right;
+     margin: -12px 0 0 0;
+}
+
+
+
+.error{
+  padding: 5px 9px;
+  border: 1px solid black;
+  color: black;
+  border-radius: 3px;
+  background-color:#ffff80;
+  background-color:rgb(255, 255, 128);
+  background-color:hsl(60, 100%, 75%);
+  font-family: inherit;
+  font-size: 100%;
+}
+
+.success{
+  padding: 5px 9px;
+  border: 1px solid green;
+   color: black;
+  border-radius: 3px;
+  background-color:#b3ff66;
+  background-color:rgb(179, 255, 102);
+  background-color:hsl(90, 100%, 70%);
+  font-family: inherit;
+  font-size: 100%;
+}
+
+form span{
+  color: red;
+}
+
+.respond{
+    padding: 20px 70px;
+    border: 1px solid #888;
+    border-radius: 7px;
+}
+
+
+
+/* Testimonials */
+.message-container {
+  background-color:#FFFAFA;
+  background-color:rgb(255, 250, 250);
+  background-color:hsl(0, 100%, 99%);
+  padding: 16px;
+  margin: 16px 0;
+  -moz-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  -webkit-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+.message-container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.message-container img {
+  float: left;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+.message-container span {
+  font-size: 20px;
+  margin-right: 15px;
+  font-weight: bold;
+}
+
+.recentcomments {
+    color: red;
+}
+
+.fa{
+    font-size:24px;
+    color:black;
+}
+
+/* Responsive Contact form */
+@media (max-width: 500px) {
+    .control-label {
+         float: left;
+         margin: 8px 0 0 0;
+    }
+}
+
+
+/* Responsive Testimonials */
+@media (max-width: 500px) {
+  .message-container {
+      text-align: center;
+  }
+  .message-container img {
+      margin: auto;
+      float: none;
+      display: block;
+  }
+  .contact-box {
+    padding: 0;
+  }
+}
+
+
+/*--------------------------------------------------------------
+15.0 Footer
+--------------------------------------------------------------*/
+.site-footer {
+    padding: 1em;
+    font-family: 'Marvel', sans-serif;
+    font-size: 16px;
+    font-size: 1.6rem;
+    color: #fff;
+    color: hsl(0, 0%, 100%);
+    background: #19334d;
+    background: rgb(25, 51, 77);
+    background: hsl(210, 51%, 20%);
+}
+.site-footer a {
+    color: #fff;
+    color: hsl(0, 0%, 100%);
+}
+/* alinha para o centro */
+.site-info { 
+    text-align: center; 
+}
+.site-copyright{
+    text-align: left; 
+}
+
+/* Lista de posts */
+.entry-date{
+}
+.footer-listPosts{
+    color: #fff;
+    color: hsl(0, 0%, 100%);
+}
+
+
